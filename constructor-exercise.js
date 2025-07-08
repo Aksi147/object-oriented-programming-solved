@@ -9,11 +9,11 @@ function Book(title, author, year, genre) {
   this.genre = genre;
 }
 
-const myBook = new Book("Best book ever", "C. Szpilman", 1800, "mystery");
+let myBook = new Book("Best book ever", "C. Szpilman", 1800, "mystery");
 
 Book.prototype.getSummary = function () {
   console.log(
-    `The ${this.title}, written by ${this.author} in the year ${this.year} is an amazing ${this.genre} novel.`
+    `The book ${this.title}, written by ${this.author} in the year ${this.year} is an amazing ${this.genre} novel.`
   );
 };
 
@@ -35,3 +35,23 @@ myBook.getSummary();
 console.log(myBook.isClassic());
 myBook.updateYear(1808);
 myBook.changeGenre("Romance");
+
+function Book(title, author, year, genre) {
+  this.title = title;
+  this.author = author;
+  this.year = year;
+  this.genre = genre;
+}
+
+const nextBook = new Book(
+  "To Kill a Mockingbird",
+  "Harper Lee",
+  1960,
+  "Fiction"
+);
+
+console.log(nextBook);
+nextBook.getSummary();
+console.log(nextBook.isClassic());
+nextBook.updateYear(1945);
+nextBook.changeGenre("History");
