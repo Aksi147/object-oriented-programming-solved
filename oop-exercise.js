@@ -5,39 +5,52 @@ class Student {
     this.age = age;
     this.grades = [];
   }
-  addGrade(grade, ...rest) {
-    if (grade > 0 && grade < 100) {
-      this.grades.push(grade);
-    } else if (rest > 0 && rest < 100) {
-      this.grades.push(...rest);
-    } else {
-      console.log("Grade must be between 0 and 100");
+  addGrade(...grades) {
+    for (let grade of grades) {
+      if (grade > 0 && grade < 100) {
+        this.grades.push(grade);
+      } else {
+        console.log("Grade must be between 0 and 100");
+      }
     }
   }
+
   calculateAverageGrade() {
-    if (this.grades !== undefined) {
-      averageGrade = this.grades.reduce(
-        (acc, val) => (acc + val) / this.grades.length
-      );
-    } else {
-      return 0;
-    }
+    if (this.grades.length === 0) return 0;
+    let gradeSum = this.grades.reduce((acc, val) => acc + val, 0);
+    let averageGrade = gradeSum / this.grades.length;
+    return averageGrade;
   }
+
   hasPassed(passingGrade) {
-    return averageGrade > passingGrade;
+    return this.calculateAverageGrade() > passingGrade;
   }
+
   getName() {
     return this.name;
   }
+
   getAge() {
     return this.age;
   }
 }
 
 const student1 = new Student("Alex", 25);
-student1.addGrade(80, 90, 70, 65, 89);
+student1.addGrade(98, 95, 80, 92, 89);
 console.log(student1);
+console.log(student1.calculateAverageGrade());
+console.log(student1.hasPassed(80));
+console.log(student1.getName());
+console.log(student1.getAge());
 
-class Course {
-  constructor() {}
+// everything checks out. 7/8/25 1:47pm
+
+class Course extends Student {
+  constructor(title, students) {
+    super(name, age);
+    this.title = title;
+    this.students = students;
+  }
+
+  enrollStudent(Student) {}
 }
