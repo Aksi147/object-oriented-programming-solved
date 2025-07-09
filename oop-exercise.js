@@ -43,17 +43,16 @@ console.log(student1.hasPassed(80));
 console.log(student1.getName());
 console.log(student1.getAge());
 
-// everything checks out. 7/8/25 1:47pm
+// Everything checks out. 7/8/25 1:47pm
 
-class Course extends Student {
+class Course {
   constructor(title) {
-    super(name, age);
     this.title = title;
     this.students = [];
   }
 
-  enrollStudent(Student) {
-    this.students.push(Student);
+  enrollStudent(student) {
+    this.students.push(student);
   }
 
   listStudents() {
@@ -62,14 +61,22 @@ class Course extends Student {
 
   calculcateCourseAverage() {
     if (this.students.length === 0) return 0;
-    for (peer of students) {
-      this.calculateAverageGrade();
-      let courseSum = peer.averageGrade.reduce((acc, val) => acc + val, 0);
-      let courseAverage = courseSum / this.students.length;
+    let sum = 0;
+    for (let student of this.students) {
+      sum += student.calculateAverageGrade();
     }
+    return sum / this.students.length;
   }
 }
 
 const course1 = new Course("Devslopes");
-console.log(student1);
-enrollStudent(student1);
+course1.enrollStudent(student1);
+console.log(course1);
+const student2 = new Student("Eddie", 21);
+student2.addGrade(99, 100, 94, 96);
+course1.enrollStudent(student2);
+course1.listStudents();
+student2.calculateAverageGrade();
+console.log(course1.calculcateCourseAverage());
+
+// Everything here checks out also 7/9/25 12:55pm
